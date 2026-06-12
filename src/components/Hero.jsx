@@ -315,9 +315,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Jalur hazard — aksen streetwear di tepi */}
-      <div className="absolute top-24 right-0 w-40 h-2.5 stripe-hazard opacity-50 pointer-events-none" aria-hidden="true" />
-      <div className="absolute bottom-16 left-0 w-32 h-2.5 stripe-hazard opacity-40 pointer-events-none" aria-hidden="true" />
 
       <ParticleField />
 
