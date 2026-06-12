@@ -3,6 +3,8 @@ import { useRef, useState } from 'react'
 
 const SIZES = ['S', 'M', 'L', 'XL', '2XL', '3XL', '4XL', '5XL']
 
+const TEMPAH_LINK = 'https://vt.tiktok.com/ZS9j6F1hV2nSF-4PYIU/'
+
 const MODELS = [
   {
     key: 'collar-zip',
@@ -61,13 +63,9 @@ export default function PricingWizard() {
     setSize(null)
   }
 
-  const waText = model && size
-    ? encodeURIComponent(`Saya berminat untuk menempah Jersey PAS PRU16.\nModel: ${model.name}\nSaiz: ${size}\nHarga Landing Page: ${ringgit(model.prices.landing)}`)
-    : ''
-
   return (
     <section id="pricing" className="py-16 md:py-32 relative" ref={ref}>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(0,122,30,0.02),transparent)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(0,122,30,0.02),transparent)]" />
 
       <div className="max-w-5xl mx-auto px-6 relative">
         {/* Header */}
@@ -284,7 +282,7 @@ export default function PricingWizard() {
                 {/* CTA */}
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <motion.a
-                    href={`https://wa.me/60182255865?text=${waText}`}
+                    href={TEMPAH_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.03 }}

@@ -197,7 +197,7 @@ export default function ProductSection() {
 
   return (
     <section id="product" className="py-16 md:py-32 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(0,122,30,0.02),transparent)]" />
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(0,122,30,0.02),transparent)]" />
 
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
