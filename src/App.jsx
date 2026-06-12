@@ -11,26 +11,24 @@ import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <div
-      className="min-h-screen bg-[#030804]"
-      style={{
-        backgroundImage: 'url(/assets/background-texture-2.JPG)',
-        backgroundRepeat: 'repeat',
-        backgroundSize: '400px',
-        backgroundBlendMode: 'overlay',
-      }}
-    >
-      <Navbar />
-      <main>
-        <Hero />
-        <ProductSection />
-        <PricingWizard />
-        <MaterialSection />
-        <ProcessTimeline />
-        <AboutSection />
-        <ContactSection />
-      </main>
-      <Footer />
+    <div className="min-h-screen bg-metallic relative">
+      {/* Lapisan tekstur metalik — fixed supaya kekal sewaktu scroll */}
+      <div className="fixed inset-0 bg-brushed pointer-events-none" aria-hidden="true" />
+      <div className="fixed inset-0 bg-grain pointer-events-none" aria-hidden="true" />
+
+      <div className="relative">
+        <Navbar />
+        <main>
+          <Hero />
+          <ProductSection />
+          <PricingWizard />
+          <MaterialSection />
+          <ProcessTimeline />
+          <AboutSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
     </div>
   )
 }

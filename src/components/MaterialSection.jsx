@@ -74,7 +74,7 @@ export default function MaterialSection() {
 
   return (
     <section id="material" className="py-16 md:py-32 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,168,40,0.05),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,168,40,0.02),transparent_60%)]" />
       <div className="absolute left-0 top-1/2 w-px h-64 -translate-y-1/2 bg-gradient-to-b from-transparent via-green-400/20 to-transparent" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>

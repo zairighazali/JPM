@@ -35,7 +35,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact" className="py-16 md:py-32 relative" ref={ref}>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(0,122,30,0.1),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_50%,rgba(0,122,30,0.02),transparent)]" />
 
       <div className="max-w-4xl mx-auto px-6 text-center">
         <motion.div

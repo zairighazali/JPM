@@ -90,7 +90,7 @@ function ParticleField() {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">
       {pts.map((p) => (
-        <motion.div key={p.id} className="absolute rounded-full bg-green-400"
+        <motion.div key={p.id} className="absolute rounded-full bg-slate-300"
           style={{ left: `${p.x}%`, top: `${p.y}%`, width: p.size, height: p.size, opacity: 0.1 }}
           animate={{ y: [0, -22, 0], opacity: [0.05, 0.25, 0.05] }}
           transition={{ duration: p.dur, delay: p.delay, repeat: Infinity, ease: 'easeInOut' }} />
@@ -303,19 +303,22 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden">
-      {/* ── Background ── */}
-      <div
-        className="absolute inset-0"
-        style={{
-          backgroundColor: '#030804',
-          backgroundImage: 'url(/assets/background-texture-2.JPG)',
-          backgroundRepeat: 'repeat',
-          backgroundSize: '400px',
-          backgroundBlendMode: 'overlay',
-        }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(0,120,30,0.08),transparent)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_85%_60%,rgba(0,168,40,0.06),transparent)]" />
+      {/* ── Background: metallic global + aksen hijau ── */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_0%,rgba(0,120,30,0.02),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_85%_60%,rgba(0,168,40,0.02),transparent)]" />
+
+      {/* Watermark streetwear gergasi */}
+      <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 overflow-hidden pointer-events-none select-none" aria-hidden="true">
+        <div className="text-outline-chrome font-black uppercase whitespace-nowrap leading-none text-center"
+          style={{ fontSize: 'clamp(120px, 22vw, 320px)', letterSpacing: '-0.02em' }}>
+          PRU16
+        </div>
+      </div>
+
+      {/* Jalur hazard — aksen streetwear di tepi */}
+      <div className="absolute top-24 right-0 w-40 h-2.5 stripe-hazard opacity-50 pointer-events-none" aria-hidden="true" />
+      <div className="absolute bottom-16 left-0 w-32 h-2.5 stripe-hazard opacity-40 pointer-events-none" aria-hidden="true" />
+
       <ParticleField />
 
       <div className="relative z-10 min-h-[100svh] w-full max-w-7xl mx-auto px-4 sm:px-6 pt-24 pb-12
@@ -393,7 +396,7 @@ export default function Hero() {
           {/* Ambient glow */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
             <div className="w-[560px] h-[560px] rounded-full"
-              style={{ background: 'radial-gradient(circle, rgba(0,180,50,0.12) 0%, transparent 68%)' }} />
+              style={{ background: 'radial-gradient(circle, rgba(220,226,238,0.04) 0%, transparent 68%)' }} />
           </div>
 
           {/* Media card */}
@@ -403,7 +406,7 @@ export default function Hero() {
               width: 'clamp(260px, 80vw, 400px)',
               aspectRatio: '3/4',
               maxHeight: 'min(62svh, 560px)',
-              boxShadow: '0 30px 90px rgba(0,168,40,0.22), 0 12px 36px rgba(0,0,0,0.8)',
+              boxShadow: '0 30px 90px rgba(0,0,0,0.7), 0 12px 36px rgba(0,0,0,0.8)',
             }}
           >
             <AnimatePresence mode="wait">
@@ -504,8 +507,6 @@ export default function Hero() {
           <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
         </motion.svg>
       </motion.a>
-
-      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#030804] to-transparent pointer-events-none" />
 
       {/* Close-up Modal */}
       <CloseUpModal view={activeView} setView={setActiveView} onClose={() => setActiveView(null)} />

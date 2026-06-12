@@ -93,7 +93,7 @@ export default function ProcessTimeline() {
 
   return (
     <section id="process" className="py-16 md:py-32 relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,122,30,0.08),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,122,30,0.02),transparent_60%)]" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <motion.div

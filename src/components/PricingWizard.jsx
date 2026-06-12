@@ -67,7 +67,7 @@ export default function PricingWizard() {
 
   return (
     <section id="pricing" className="py-16 md:py-32 relative" ref={ref}>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(0,122,30,0.07),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(0,122,30,0.02),transparent)]" />
 
       <div className="max-w-5xl mx-auto px-6 relative">
         {/* Header */}

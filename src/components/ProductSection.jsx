@@ -89,7 +89,7 @@ function JerseyViewer({ inView }) {
       {/* Ambient glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[480px] h-[480px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(0,180,50,0.13) 0%, transparent 68%)' }} />
+          style={{ background: 'radial-gradient(circle, rgba(220,226,238,0.04) 0%, transparent 68%)' }} />
       </div>
 
       {/* Floating jersey */}
@@ -197,7 +197,7 @@ export default function ProductSection() {
 
   return (
     <section id="product" className="py-16 md:py-32 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(0,122,30,0.06),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_50%,rgba(0,122,30,0.02),transparent)]" />
 
       <div className="max-w-7xl mx-auto px-6">
         <motion.div

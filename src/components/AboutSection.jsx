@@ -67,7 +67,7 @@ function CompanyViewer({ inView }) {
       {/* Ambient glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="w-[480px] h-[480px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(0,180,50,0.1) 0%, transparent 68%)' }} />
+          style={{ background: 'radial-gradient(circle, rgba(220,226,238,0.035) 0%, transparent 68%)' }} />
       </div>
 
       {/* Media card */}
@@ -76,7 +76,7 @@ function CompanyViewer({ inView }) {
         style={{
           maxWidth: '420px',
           aspectRatio: '3/4',
-          boxShadow: '0 30px 90px rgba(0,168,40,0.18), 0 12px 36px rgba(0,0,0,0.8)',
+          boxShadow: '0 30px 90px rgba(0,0,0,0.7), 0 12px 36px rgba(0,0,0,0.8)',
         }}
       >
         <AnimatePresence mode="wait">
@@ -147,7 +147,7 @@ export default function AboutSection() {
 
   return (
     <section id="about" className="py-16 md:py-32 relative">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(0,122,30,0.07),transparent)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(0,122,30,0.02),transparent)]" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 lg:mb-24">
