@@ -5,7 +5,7 @@ const PLATFORMS = [
   {
     key: 'tiktok',
     name: 'TikTok Shop',
-    badge: '🏷️ Harga Terendah',
+    badge: 'Harga Terendah',
     link: 'https://vt.tiktok.com/ZS9j6F1hV2nSF-4PYIU/',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -14,20 +14,24 @@ const PLATFORMS = [
     ),
     iconColor: 'text-white',
     highlight: false,
+    pros: ['Ada live flash sale', 'Ada discount', 'Discount shipping fee'],
+    cons: ['Tiada jualan borong'],
   },
   {
     key: 'shopee',
     name: 'Shopee',
-    badge: '🏷️ Pilihan Popular',
+    badge: 'Pilihan Popular',
     link: 'https://my.shp.ee/hQApxCZV',
     icon: <img src="/assets/shopee-icon.svg" alt="Shopee" className="w-10 h-10" />,
     iconColor: '',
     highlight: false,
+    pros: ['Ada discount', 'Discount shipping fee', 'Buy more save more'],
+    cons: ['Tiada jualan borong'],
   },
   {
     key: 'whatsapp',
     name: 'WhatsApp',
-    badge: '🏷️ Sesuai Untuk Borong',
+    badge: 'Harga Borong',
     link: 'https://wa.me/60182255865',
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -36,6 +40,14 @@ const PLATFORMS = [
     ),
     iconColor: 'text-green-400',
     highlight: true,
+    pros: [
+      'Harga terendah',
+      'Ada jualan borong',
+      'Boleh pre order',
+      'Add on nama kawasan',
+      'Free shipping RM2000 ke atas',
+    ],
+    cons: [],
   },
 ]
 
@@ -47,7 +59,7 @@ export default function PricingSection() {
     <section id="pricing" className="py-16 md:py-28 relative" ref={ref}>
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(0,122,30,0.02),transparent)]" />
 
-      <div className="max-w-4xl mx-auto px-6">
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -78,7 +90,7 @@ export default function PricingSection() {
               transition={{ delay: i * 0.1, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.97 }}
-              className={`group relative flex flex-col items-center text-center rounded-2xl p-8 border transition-all duration-300 ${
+              className={`group relative flex flex-col rounded-2xl p-6 pt-8 border transition-all duration-300 ${
                 p.highlight
                   ? 'border-green-400/40 shadow-[0_0_40px_rgba(0,200,58,0.12)]'
                   : 'glass-card border-white/8 hover:border-white/20'
@@ -87,25 +99,47 @@ export default function PricingSection() {
                 background: 'linear-gradient(160deg, rgba(0,168,40,0.10), rgba(0,80,20,0.05))',
               } : {}}
             >
-              {/* Icon */}
-              <div className={`flex items-center justify-center mb-5 ${p.iconColor} group-hover:scale-110 transition-transform duration-300`}>
-                {p.icon}
-              </div>
-
-              {/* Name */}
-              <div className="text-white font-black text-xl mb-3">{p.name}</div>
-
-              {/* Badge */}
-              <div className={`text-sm font-semibold px-4 py-1.5 rounded-full border ${
+              {/* Diagonal ribbon badge — top-right corner, extends outside card */}
+              <div className={`absolute top-6 right-[-28px] w-[130px] text-center text-[9px] font-black tracking-[0.1em] uppercase py-1.5 rotate-45 origin-center pointer-events-none z-10 ${
                 p.highlight
-                  ? 'bg-green-400/10 border-green-400/30 text-green-400'
-                  : 'bg-white/5 border-white/10 text-white/60'
+                  ? 'bg-green-400 text-black'
+                  : 'bg-white/20 text-white/80'
               }`}>
                 {p.badge}
               </div>
 
+              {/* Icon */}
+              <div className={`flex items-center justify-center mb-4 ${p.iconColor} group-hover:scale-110 transition-transform duration-300`}>
+                {p.icon}
+              </div>
+
+              {/* Name */}
+              <div className="text-white font-black text-xl mb-4 text-center">{p.name}</div>
+
+              {/* Pros */}
+              <ul className="space-y-2 mb-3 flex-1">
+                {p.pros.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-sm text-white/60">
+                    <span className="text-green-400 mt-0.5 shrink-0">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              {/* Cons */}
+              {p.cons.length > 0 && (
+                <ul className="space-y-1.5 mt-auto pt-3 border-t border-white/6">
+                  {p.cons.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm text-white/30">
+                      <span className="text-red-400/60 mt-0.5 shrink-0">✕</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
+
               {/* Arrow */}
-              <div className={`mt-5 text-sm font-medium transition-colors ${p.highlight ? 'text-green-400/70 group-hover:text-green-400' : 'text-white/30 group-hover:text-white/60'}`}>
+              <div className={`mt-5 text-sm font-medium text-center transition-colors ${p.highlight ? 'text-green-400/70 group-hover:text-green-400' : 'text-white/30 group-hover:text-white/60'}`}>
                 Beli sekarang →
               </div>
             </motion.a>
