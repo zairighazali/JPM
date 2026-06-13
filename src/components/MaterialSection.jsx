@@ -45,7 +45,7 @@ const materials = [
 ]
 
 const SIZE_CHARTS = [
-  { key: 'shirt',    label: 'Carta Saiz Jersey (Shirt)',   src: '/assets/size-chat-shirt.jpg' },
+  { key: 'shirt',    label: 'Carta Saiz Jersey',   src: '/assets/size-chat-shirt.jpg' },
   { key: 'muslimah', label: 'Carta Saiz Jersey (Muslimah)', src: '/assets/size-chart-muslimah.jpg' },
 ]
 
@@ -70,8 +70,8 @@ export default function MaterialSection() {
             <span className="text-xs text-green-400/80 tracking-[0.2em] uppercase font-medium">Spesifikasi Bahan</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-5 leading-tight">
-            <span className="text-white">Kualiti yang</span>{' '}
-            <span className="text-gradient">Tidak Berkompromi</span>
+            <span className="text-white">Pilihan Material</span>{' '}
+            <span className="text-gradient">yang Terbaik</span>
           </h2>
           <p className="text-white/40 text-lg leading-relaxed">
             Setiap komponen dipilih secara teliti untuk memastikan keselesaan maksima dan ketahanan jangka panjang.

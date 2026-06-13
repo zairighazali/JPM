@@ -346,7 +346,7 @@ export default function Hero() {
 
           <p className="text-white/45 text-base sm:text-lg leading-relaxed mt-5 max-w-md">
             Sublimasi premium yang tak pudar, Microfiber Minimesh 160gsm sejuk dipakai.
-            Saiz S hingga 5XL — sedia dihantar ke seluruh Malaysia.
+            Saiz S hingga 5XL . Penghantaran seluruh Malaysia.
           </p>
 
           {/* CTA + price anchor */}

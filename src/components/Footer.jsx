@@ -46,7 +46,7 @@ export default function Footer() {
               <BrandLogo />
             </div>
             <p className="text-white/30 text-sm leading-relaxed">
-              Pengedar rasmi jersey penyokong PAS untuk Pilihan Raya Umum ke-16. Kualiti premium, penghantaran pantas.
+            Pembekal jersey penyokong PAS berkualiti tinggi untuk PRU16. Material premium dan penghantaran pantas.
             </p>
           </div>
           <div>
