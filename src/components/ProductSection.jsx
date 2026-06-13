@@ -7,6 +7,7 @@ const PRODUCTS = [
     name: 'Jersey Collar Zip',
     desc: 'Polo zip klasik — pilihan utama penyokong. Sublimasi penuh, dryfit sejuk.',
     front: '/assets/product/jersey-zip-front.png',
+    imgScale: 1.3,
     views: [
       { key: 'front', label: 'Depan',    src: '/assets/product/jersey-zip-front.png' },
       { key: 'side',  label: 'Tepi',     src: '/assets/product/jersey-zip-side.png' },
@@ -18,8 +19,11 @@ const PRODUCTS = [
     name: 'Jersey Long Sleeve',
     desc: 'Lengan panjang — ringan, selesa & sesuai untuk semua aktiviti kempen.',
     front: '/assets/product/long-sleeve-front.png',
+    imgScale: 1,
     views: [
-      { key: 'front', label: 'Depan', src: '/assets/product/long-sleeve-front.png' },
+      { key: 'front', label: 'Depan',    src: '/assets/product/long-sleeve-front.png' },
+      { key: 'side',  label: 'Tepi',     src: '/assets/product/long-sleeve-side.png' },
+      { key: 'back',  label: 'Belakang', src: '/assets/product/long-sleeve-back.png' },
     ],
   },
   {
@@ -27,6 +31,7 @@ const PRODUCTS = [
     name: 'Jersey Muslimah V-Neck',
     desc: 'Potongan labuh & sopan. Rekaan khas untuk muslimah yang aktif.',
     front: '/assets/product/muslimah-v-neck-front.png',
+    imgScale: 1.15,
     views: [
       { key: 'front', label: 'Depan',    src: '/assets/product/muslimah-v-neck-front.png' },
       { key: 'side',  label: 'Tepi',     src: '/assets/product/muslimah-v-neck-side.png' },
@@ -67,7 +72,7 @@ function ProductModal({ product, onClose }) {
       >
         <div className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-black/60 backdrop-blur-md">
           {/* Image */}
-          <div className="relative bg-black/40" style={{ minHeight: '340px' }}>
+          <div className="relative bg-black/40 flex items-center justify-center p-6" style={{ minHeight: '340px', height: '420px' }}>
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeView.key}
@@ -77,8 +82,7 @@ function ProductModal({ product, onClose }) {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="w-full object-contain"
-                style={{ maxHeight: '420px' }}
+                className="w-full h-full object-contain"
                 draggable={false}
               />
             </AnimatePresence>
@@ -133,12 +137,15 @@ function ProductCard({ product, i, inView }) {
       >
         {/* Product image */}
         <div className="relative overflow-hidden bg-black/20" style={{ aspectRatio: '3/4' }}>
-          <img
-            src={product.front}
-            alt={product.name}
-            className="absolute inset-0 w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-700 ease-out"
-            draggable={false}
-          />
+          <div className="absolute inset-0 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-700 ease-out">
+            <img
+              src={product.front}
+              alt={product.name}
+              className="w-full h-full object-contain"
+              style={{ transform: `scale(${product.imgScale})` }}
+              draggable={false}
+            />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
 
           {/* Tap hint */}

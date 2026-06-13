@@ -262,7 +262,7 @@ function CloseUpModal({ view, setView, onClose }) {
 }
 
 const MEDIA = [
-  { key: 'promo', label: 'Promo', type: 'video', src: '/assets/promo-cinematic.mp4', thumb: '/assets/model-front.jpg', closeUp: VIEWS[0], sublabel: 'Edisi Terhad', title: 'Jersey PAS PRU16' },
+  { key: 'promo', label: 'Promo', type: 'video', src: '/assets/promo-new.mov', thumb: '/assets/model-front.jpg', closeUp: VIEWS[0], sublabel: 'Edisi Terhad', title: 'Jersey PAS PRU16' },
   // Disembunyikan buat sementara — buka semula bila perlu video 360°
   // { key: '360',   label: '360°',  type: 'video', src: '/assets/video-promo.mp4',     thumb: '/assets/model-side.jpg',  closeUp: VIEWS[0], sublabel: 'Pusingan Penuh',   title: 'Pandangan 360°' },
 ]
@@ -352,20 +352,17 @@ export default function Hero() {
           {/* CTA + price anchor */}
           <div className="flex flex-col sm:flex-row items-center gap-5 mt-8">
             <motion.a
-              href="https://vt.tiktok.com/ZS9j6F1hV2nSF-4PYIU/"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#pricing"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#007A1E] via-[#00A828] to-[#00C83A] text-white font-bold rounded-full text-base tracking-wide glow-sm hover:shadow-[0_0_50px_rgba(0,200,58,0.45)] transition-shadow duration-300"
             >
-              <TikTokIcon />
-              Pesan Sekarang
+              Macam Mana Nak Beli?
             </motion.a>
-            <div className="flex flex-col items-center sm:items-start leading-tight">
+            {/* <div className="flex flex-col items-center sm:items-start leading-tight">
               <span className="text-white/30 text-[11px] uppercase tracking-widest">Mulai dari</span>
               <span className="text-gradient font-black text-2xl">RM 35</span>
-            </div>
+            </div> */}
           </div>
 
           {/* Trust row */}
