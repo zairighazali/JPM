@@ -7,7 +7,7 @@ const PRODUCTS = [
     name: 'Jersey Collar Zip',
     desc: 'Polo zip klasik — pilihan utama penyokong. Sublimasi penuh, dryfit sejuk.',
     front: '/assets/product/jersey-zip-front.png',
-    imgScale: 1.3,
+    imgScale: 1.5,
     views: [
       { key: 'front', label: 'Depan',    src: '/assets/product/jersey-zip-front.png' },
       { key: 'side',  label: 'Tepi',     src: '/assets/product/jersey-zip-side.png' },
