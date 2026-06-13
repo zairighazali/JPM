@@ -2,21 +2,21 @@ import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { useRef, useState } from 'react'
 
 const PHOTOS = [
-  { src: '/assets/section-3/perarakan.jpg' },
-  { src: '/assets/section-3/booth-3.JPG' },
-  { src: '/assets/section-3/booth-4.JPG' },
-  { src: '/assets/section-3/booth-16.JPG' },
-  { src: '/assets/section-3/booth-5.JPG' },
-  { src: '/assets/section-3/booth-6.JPG' },
-  { src: '/assets/section-3/booth-7.JPG' },
-  { src: '/assets/section-3/booth-8.JPG' },
-  { src: '/assets/section-3/booth-9.JPG' },
-  { src: '/assets/section-3/booth-10.JPG' },
-  { src: '/assets/section-3/booth-12.JPG' },
-  { src: '/assets/section-3/booth-2.JPG' },
-  { src: '/assets/section-3/booth-13.JPG' },
-  { src: '/assets/section-3/booth-14.JPG' },
-  { src: '/assets/section-3/booth-15.JPG' },
+  { src: '/assets/section-3/perarakan.webp' },
+  { src: '/assets/section-3/booth-3.webp' },
+  { src: '/assets/section-3/booth-4.webp' },
+  { src: '/assets/section-3/booth-16.webp' },
+  { src: '/assets/section-3/booth-5.webp' },
+  { src: '/assets/section-3/booth-6.webp' },
+  { src: '/assets/section-3/booth-7.webp' },
+  { src: '/assets/section-3/booth-8.webp' },
+  { src: '/assets/section-3/booth-9.webp' },
+  { src: '/assets/section-3/booth-10.webp' },
+  { src: '/assets/section-3/booth-12.webp' },
+  { src: '/assets/section-3/booth-2.webp' },
+  { src: '/assets/section-3/booth-13.webp' },
+  { src: '/assets/section-3/booth-14.webp' },
+  { src: '/assets/section-3/booth-15.webp' },
   
   
 ]

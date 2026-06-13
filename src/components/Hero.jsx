@@ -262,7 +262,7 @@ function CloseUpModal({ view, setView, onClose }) {
 }
 
 const MEDIA = [
-  { key: 'promo', label: 'Promo', type: 'video', src: '/assets/promo-new.mov', thumb: '/assets/model-front.jpg', closeUp: VIEWS[0], sublabel: 'Edisi Terhad', title: 'Jersey PAS PRU16' },
+  { key: 'promo', label: 'Promo', type: 'video', src: '/assets/promo-new.webm', thumb: '/assets/model-front.jpg', closeUp: VIEWS[0], sublabel: 'Edisi Terhad', title: 'Jersey PAS PRU16' },
   // Disembunyikan buat sementara — buka semula bila perlu video 360°
   // { key: '360',   label: '360°',  type: 'video', src: '/assets/video-promo.mp4',     thumb: '/assets/model-side.jpg',  closeUp: VIEWS[0], sublabel: 'Pusingan Penuh',   title: 'Pandangan 360°' },
 ]
