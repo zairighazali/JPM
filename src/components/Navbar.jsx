@@ -3,12 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import BrandLogo from './BrandLogo'
 
 const links = [
-  { label: 'Produk', href: '#product' },
-  { label: 'Harga', href: '#pricing' },
+  { label: 'Produk',  href: '#product' },
   { label: 'Material', href: '#material' },
-  { label: 'Proses', href: '#process' },
-  { label: 'Tentang Kami', href: '#about' },
-  { label: 'Hubungi', href: '#contact' },
+  { label: 'Harga',   href: '#pricing' },
+  { label: 'Proses',  href: '#proses' },
+  { label: 'Galeri',  href: '#galeri' },
 ]
 
 export default function Navbar() {
@@ -49,12 +48,12 @@ export default function Navbar() {
           {/* CTA */}
           <div className="hidden md:flex items-center gap-3">
             <motion.a
-              href="#contact"
+              href="#pricing"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
               className="px-5 py-2.5 text-sm font-semibold bg-gradient-to-r from-[#007A1E] to-[#00C83A] text-white rounded-full glow-sm hover:shadow-green-500/40 hover:shadow-xl transition-shadow duration-300 tracking-wide"
             >
-              Pesan Sekarang
+              Beli Sekarang
             </motion.a>
           </div>
 
@@ -90,8 +89,8 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <a href="#contact" className="mt-2 py-3 text-sm font-semibold text-center bg-gradient-to-r from-[#007A1E] to-[#00C83A] text-white rounded-full">
-                Pesan Sekarang
+              <a href="#pricing" className="mt-2 py-3 text-sm font-semibold text-center bg-gradient-to-r from-[#007A1E] to-[#00C83A] text-white rounded-full">
+                Beli Sekarang
               </a>
             </div>
           </motion.div>

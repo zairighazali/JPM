@@ -3,7 +3,6 @@ import { useRef } from 'react'
 
 const ICONS = {
   bulb: (
-    // Mentol — pre-order dibuka
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
       <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5" />
       <path d="M9 18h6" />
@@ -11,7 +10,6 @@ const ICONS = {
     </svg>
   ),
   clipboard: (
-    // Senarai semak — sort order
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
       <rect width="8" height="4" x="8" y="2" rx="1" />
       <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
@@ -19,21 +17,18 @@ const ICONS = {
     </svg>
   ),
   cog: (
-    // Gear — proses QC & persediaan
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
       <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
       <circle cx="12" cy="12" r="3" />
     </svg>
   ),
   shield: (
-    // Perisai semakan — QC produk
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
       <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
       <path d="m9 12 2 2 4-4" />
     </svg>
   ),
   truck: (
-    // Lori — penghantaran
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
       <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
       <path d="M15 18H9" />
@@ -90,9 +85,12 @@ const steps = [
 export default function ProcessTimeline() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
+  const infoRef = useRef(null)
+  const infoInView = useInView(infoRef, { once: true, margin: '-60px' })
+
 
   return (
-    <section id="process" className="py-16 md:py-32 relative overflow-hidden">
+    <section id="proses" className="py-16 md:py-32 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,122,30,0.02),transparent_60%)]" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
@@ -143,12 +141,8 @@ export default function ProcessTimeline() {
                 {/* Content */}
                 <div className={`flex-1 pb-2 pl-16 md:pl-0 ${i % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
                   <div className="glass-card rounded-2xl p-6 hover:border-green-400/20 transition-all duration-300 hover:-translate-y-1">
-                    {/* Number + date */}
                     <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                      <span
-                        className="text-4xl font-black leading-none select-none text-gradient"
-                        style={{ opacity: 0.9 }}
-                      >
+                      <span className="text-4xl font-black leading-none select-none text-gradient" style={{ opacity: 0.9 }}>
                         {step.num}
                       </span>
                       <span className="glass border border-green-400/20 rounded-full px-3.5 py-1.5 text-[11px] font-bold tracking-[0.15em] text-green-400/90 whitespace-nowrap">
@@ -192,6 +186,7 @@ export default function ProcessTimeline() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   )
