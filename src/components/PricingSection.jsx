@@ -1,5 +1,5 @@
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useInView, AnimatePresence } from 'framer-motion'
+import { useRef, useState } from 'react'
 
 const PLATFORMS = [
   {
@@ -51,6 +51,57 @@ const PLATFORMS = [
   },
 ]
 
+function Badge({ badge, highlight }) {
+  const [hovered, setHovered] = useState(false)
+
+  const colors = highlight
+    ? { bg: 'bg-green-400', text: 'text-black', glow: 'shadow-[0_0_12px_rgba(0,200,58,0.6)]', dot: 'bg-black' }
+    : { bg: 'bg-white/15', text: 'text-white', glow: 'shadow-[0_0_8px_rgba(255,255,255,0.15)]', dot: 'bg-white/60' }
+
+  return (
+    <motion.div
+      className={`absolute top-3 right-3 z-10 cursor-default`}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+    >
+      <motion.div
+        animate={{ scale: hovered ? 1.08 : 1 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+        className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-full ${colors.bg} ${colors.text} ${colors.glow} backdrop-blur-sm`}
+      >
+        {/* Pulsing dot */}
+        <motion.span
+          className={`w-1.5 h-1.5 rounded-full ${colors.dot} shrink-0`}
+          animate={highlight ? { scale: [1, 1.4, 1], opacity: [1, 0.6, 1] } : {}}
+          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <span className="text-[9px] font-black tracking-[0.12em] uppercase whitespace-nowrap">
+          {badge}
+        </span>
+
+        {/* Shimmer on hover */}
+        <AnimatePresence>
+          {hovered && (
+            <motion.span
+              className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <motion.span
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                initial={{ x: '-100%' }}
+                animate={{ x: '100%' }}
+                transition={{ duration: 0.5 }}
+              />
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function PricingSection() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
@@ -99,14 +150,7 @@ export default function PricingSection() {
                 background: 'linear-gradient(160deg, rgba(0,168,40,0.10), rgba(0,80,20,0.05))',
               } : {}}
             >
-              {/* Diagonal ribbon badge — top-right corner, extends outside card */}
-              <div className={`absolute top-6 right-[-28px] w-[130px] text-center text-[9px] font-black tracking-[0.1em] uppercase py-1.5 rotate-45 origin-center pointer-events-none z-10 ${
-                p.highlight
-                  ? 'bg-green-400 text-black'
-                  : 'bg-white/20 text-white/80'
-              }`}>
-                {p.badge}
-              </div>
+              <Badge badge={p.badge} highlight={p.highlight} />
 
               {/* Icon */}
               <div className={`flex items-center justify-center mb-4 ${p.iconColor} group-hover:scale-110 transition-transform duration-300`}>
