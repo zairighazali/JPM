@@ -8,27 +8,27 @@ const CATEGORIES = [
     key: 'pre-pro',
     label: 'Produk Terdahulu',
     desc: 'Hasil kerja sebenar yang pernah kami bekalkan',
-    imgs: [1, 2, 3, 4, 5, 6].map((n) => `${DIR}/pre-pro-${n}.JPG`),
+    imgs: [1, 2, 3, 4, 5, 6].map((n) => `${DIR}/pre-pro-${n}.webp`),
   },
   {
     key: 'lapangan',
     label: 'Di Lapangan',
     desc: 'Perarakan & pameran jualan yang kami sertai',
-    imgs: [`${DIR}/perarakan.jpg`, ...[1, 2, 3, 4, 5, 6, 7, 8].map((n) => `${DIR}/pameran-${n}.JPG`)],
+    imgs: [`${DIR}/perarakan.webp`, ...[1, 2, 3, 4, 5, 6, 7, 8].map((n) => `${DIR}/pameran-${n}.webp`)],
   },
   {
     key: 'review',
     label: 'Review Pelanggan',
     desc: 'Maklum balas sebenar daripada pelanggan kami',
-    imgs: [1, 2, 3, 4, 5].map((n) => `${DIR}/review-${n}.JPG`),
+    imgs: [1, 2, 3, 4, 5].map((n) => `${DIR}/review-${n}.webp`),
   },
   {
     key: 'produksi',
     label: 'Produksi',
     desc: 'Pasukan kami bekerja di sebalik setiap tempahan',
     imgs: [
-      ...[1, 2, 3, 4].map((n) => `${DIR}/bts-${n}.JPG`),
-      ...[1, 2, 3, 4, 5].map((n) => `${DIR}/production-${n}.JPG`),
+      ...[1, 2, 3, 4].map((n) => `${DIR}/bts-${n}.webp`),
+      ...[1, 2, 3, 4, 5].map((n) => `${DIR}/production-${n}.webp`),
     ],
   },
   {
@@ -36,8 +36,8 @@ const CATEGORIES = [
     label: 'Stok & Pos',
     desc: 'Stok pukal disemak rapi & dipos terus kepada anda',
     imgs: [
-      ...[1, 2, 3].map((n) => `${DIR}/stock-${n}.JPG`),
-      ...[1, 2].map((n) => `${DIR}/pos-${n}.JPG`),
+      ...[1, 2, 3].map((n) => `${DIR}/stock-${n}.webp`),
+      ...[1, 2].map((n) => `${DIR}/pos-${n}.webp`),
     ],
   },
 ]

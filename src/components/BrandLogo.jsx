@@ -2,7 +2,7 @@
 // dibalut ring gradient + glow — lebih kemas daripada crop imej flag mentah.
 export default function BrandLogo({ compact = false }) {
   return (
-    <a href="#" className="flex items-center gap-3 group" aria-label="Jersey PAS Malaysia">
+    <a href="#" className="flex items-center gap-3 group">
       <span className="relative inline-flex">
         {/* Glow halo */}
         <span className="absolute inset-0 rounded-full bg-green-400/25 blur-lg scale-110 group-hover:bg-green-400/40 transition-colors duration-300" />

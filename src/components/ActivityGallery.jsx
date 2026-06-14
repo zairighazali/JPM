@@ -90,10 +90,11 @@ export default function ActivityGallery() {
             <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" />
             <button
               onClick={() => setLightbox(null)}
+              aria-label="Tutup gambar"
               className="fixed z-30 w-9 h-9 rounded-full bg-black/70 border border-white/20 flex items-center justify-center text-white/70 hover:text-white text-sm"
               style={{ top: 'max(14px, env(safe-area-inset-top, 14px))', right: '14px' }}
             >
-              ✕
+              <span aria-hidden="true">✕</span>
             </button>
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}

@@ -2,9 +2,9 @@ import { useRef, useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 const VIEWS = [
-  { key: 'front', label: 'Depan',    src: '/assets/close-up-front.JPG' },
-  { key: 'side',  label: 'Tepi',     src: '/assets/close-up-side.jpg'  },
-  { key: 'back',  label: 'Belakang', src: '/assets/close-up-back.JPG'  },
+  { key: 'front', label: 'Depan',    src: '/assets/close-up-front.webp' },
+  { key: 'side',  label: 'Tepi',     src: '/assets/close-up-side.webp'  },
+  { key: 'back',  label: 'Belakang', src: '/assets/close-up-back.webp'  },
 ]
 
 // Tempoh pre-order: 22 Jun – 30 Jun 2026
@@ -262,9 +262,9 @@ function CloseUpModal({ view, setView, onClose }) {
 }
 
 const MEDIA = [
-  { key: 'promo', label: 'Promo', type: 'video', src: '/assets/promo-new.webm', thumb: '/assets/model-front.jpg', closeUp: VIEWS[0], sublabel: 'Edisi Terhad', title: 'Jersey PAS PRU16' },
+  { key: 'promo', label: 'Promo', type: 'video', src: '/assets/promo-new.webm', thumb: '/assets/model-front.webp', closeUp: VIEWS[0], sublabel: 'Edisi Terhad', title: 'Jersey PAS PRU16' },
   // Disembunyikan buat sementara — buka semula bila perlu video 360°
-  // { key: '360',   label: '360°',  type: 'video', src: '/assets/video-promo.mp4',     thumb: '/assets/model-side.jpg',  closeUp: VIEWS[0], sublabel: 'Pusingan Penuh',   title: 'Pandangan 360°' },
+  // { key: '360',   label: '360°',  type: 'video', src: '/assets/video-promo.mp4',     thumb: '/assets/model-side.webp',  closeUp: VIEWS[0], sublabel: 'Pusingan Penuh',   title: 'Pandangan 360°' },
 ]
 
 const TRUST = [

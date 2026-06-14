@@ -45,8 +45,8 @@ const materials = [
 ]
 
 const SIZE_CHARTS = [
-  { key: 'shirt',    label: 'Carta Saiz Jersey',   src: '/assets/size-chat-shirt.jpg' },
-  { key: 'muslimah', label: 'Carta Saiz Jersey (Muslimah)', src: '/assets/size-chart-muslimah.jpg' },
+  { key: 'shirt',    label: 'Carta Saiz Jersey',   src: '/assets/size-chat-shirt.webp' },
+  { key: 'muslimah', label: 'Carta Saiz Jersey (Muslimah)', src: '/assets/size-chart-muslimah.webp' },
 ]
 
 export default function MaterialSection() {
