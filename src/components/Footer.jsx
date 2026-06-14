@@ -50,7 +50,7 @@ export default function Footer() {
             </p>
           </div>
           <div>
-            <h4 className="text-white/60 text-xs uppercase tracking-widest mb-4 font-semibold">Pautan Cepat</h4>
+            <p className="text-white/60 text-xs uppercase tracking-widest mb-4 font-semibold">Pautan Cepat</p>
             <ul className="space-y-2">
               {[
                 { label: 'Produk', href: '#product' },
@@ -69,7 +69,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="text-white/60 text-xs uppercase tracking-widest mb-4 font-semibold">Hubungi Kami</h4>
+            <p className="text-white/60 text-xs uppercase tracking-widest mb-4 font-semibold">Hubungi Kami</p>
             <ul className="space-y-3 text-sm text-white/30">
               {CONTACT.map((c, i) => (
                 <li key={i}>

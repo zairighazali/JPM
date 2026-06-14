@@ -60,6 +60,8 @@ export default function Navbar() {
           {/* Mobile menu btn */}
           <button
             className="md:hidden w-8 h-8 flex flex-col justify-center gap-1.5 items-center"
+            aria-label={open ? 'Tutup menu' : 'Buka menu'}
+            aria-expanded={open}
             onClick={() => setOpen(!open)}
           >
             <span className={`block h-px w-6 bg-white transition-all duration-300 ${open ? 'rotate-45 translate-y-[5px]' : ''}`} />

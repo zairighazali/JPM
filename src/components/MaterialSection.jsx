@@ -153,6 +153,8 @@ export default function MaterialSection() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                   className="w-full object-contain"
+                  width={800}
+                  height={600}
                   draggable={false}
                 />
               )
