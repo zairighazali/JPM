@@ -1,192 +1,169 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
-const ICONS = {
-  bulb: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5.76.76 1.23 1.52 1.41 2.5" />
-      <path d="M9 18h6" />
-      <path d="M10 22h4" />
-    </svg>
-  ),
-  clipboard: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <rect width="8" height="4" x="8" y="2" rx="1" />
-      <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-      <path d="m9 14 2 2 4-4" />
-    </svg>
-  ),
-  cog: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z" />
-      <circle cx="12" cy="12" r="3" />
-    </svg>
-  ),
-  shield: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
-      <path d="m9 12 2 2 4-4" />
-    </svg>
-  ),
-  truck: (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
-      <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2" />
-      <path d="M15 18H9" />
-      <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14" />
-      <circle cx="17" cy="18" r="2" />
-      <circle cx="7" cy="18" r="2" />
-    </svg>
-  ),
+const ImgIcon = ({ src, alt, size = 'w-10 h-10' }) => (
+  <img src={src} alt={alt} className={`${size} object-contain`} />
+)
+
+const IconCalendar = () => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 text-green-400">
+    <rect width="18" height="18" x="3" y="4" rx="2" />
+    <path d="M16 2v4M8 2v4M3 10h18" />
+    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+  </svg>
+)
+
+const READY_STOCK_STEPS = [
+  { icon: <ImgIcon src="/assets/icon/tempahan-disahkan.png" alt="Tempahan Disahkan" />, num: '01', title: 'Tempahan Disahkan', desc: 'Kami sahkan tempahan dan pembayaran anda.' },
+  { icon: <ImgIcon src="/assets/icon/packing-pos.png" alt="Packing & Pos" />,           num: '02', title: 'Packing & Pos',     desc: 'Pesanan dipacking dengan teliti dan dihantar.' },
+  { icon: <ImgIcon src="/assets/icon/terima-pesanan.png" alt="Terima Pesanan" />,        num: '03', title: 'Terima Pesanan',    desc: 'Pesanan selamat sampai ke tangan anda.' },
+]
+
+const PRE_ORDER_STEPS = [
+  { icon: <ImgIcon src="/assets/icon/tempahan-disahkan.png" alt="Tempahan Disahkan" />, num: '01', title: 'Tempahan Disahkan', desc: 'Kami sahkan tempahan dan pembayaran anda.' },
+  { icon: <ImgIcon src="/assets/icon/produksi-jersey.png" alt="Produksi Jersey" />,     num: '02', title: 'Produksi Jersey',   desc: 'Tempahan masuk ke proses pengeluaran.', note: '(±7 Hari Bekerja)' },
+  { icon: <ImgIcon src="/assets/icon/packing-pos.png" alt="Packing & Pos" />,           num: '03', title: 'Packing & Pos',     desc: 'Pesanan dipacking dengan teliti dan dihantar.' },
+  { icon: <ImgIcon src="/assets/icon/terima-pesanan.png" alt="Terima Pesanan" />,        num: '04', title: 'Terima Pesanan',    desc: 'Pesanan selamat sampai ke tangan anda.' },
+]
+
+function StepItem({ icon, num, title, desc, note, isLast }) {
+  return (
+    <div className="flex flex-col">
+      {/* Icon | Number | Information */}
+      <div className="flex items-start gap-3">
+        {/* Icon — 100% height */}
+        <div className="shrink-0 w-16 h-16 rounded-xl bg-[#080809] border border-white/10 flex items-center justify-center">
+          {icon}
+        </div>
+        {/* Number + arrow — 30% height (~h-5) */}
+        <div className="shrink-0 w-8 flex flex-col items-center gap-1">
+          <div className="w-full h-5 rounded-md border border-green-500/40 bg-green-500/10 flex items-center justify-center text-green-400 font-black text-xs">
+            {num}
+          </div>
+          {/* Arrow down below number */}
+          {!isLast && (
+            <div className="flex flex-col items-center">
+              <span className="w-px h-5 border-l border-dashed border-green-500/40" />
+              <svg className="w-3 h-3 text-green-500/60" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M2 4l4 4 4-4" />
+              </svg>
+            </div>
+          )}
+        </div>
+        {/* Information — 70% */}
+        <div className="w-[70%] pt-1">
+          <div className="text-white font-bold text-base leading-tight">{title}</div>
+          <div className="text-white/50 text-sm mt-0.5 leading-relaxed">
+            {desc}
+            {note && <span className="text-green-400 ml-1">{note}</span>}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
-const steps = [
-  {
-    num: '01',
-    date: '22 JUN – 30 JUN',
-    title: 'Pre-Order Dibuka',
-    desc: 'Tempahan dibuka selama 9 hari sahaja — countdown berakhir 30 Jun.',
-    notes: ['Menerima tempahan mengikut kuota yang telah ditetapkan.'],
-    icon: 'bulb',
-  },
-  {
-    num: '02',
-    date: '30 JUN',
-    title: 'Tutup Order & Semakan Tempahan',
-    desc: 'Tempahan ditutup. Semua detail tempahan dan status bayaran disemak dan disusun.',
-    notes: [],
-    icon: 'clipboard',
-  },
-  {
-    num: '03',
-    date: '1 JULAI',
-    title: 'Proses Pembuatan Bermula',
-    desc: 'Cetakan sublimasi dan jahitan bermula untuk semua tempahan yang disahkan.',
-    notes: [],
-    icon: 'cog',
-  },
-  {
-    num: '04',
-    date: '7 JULAI',
-    title: 'QC Produk',
-    desc: 'Setiap helai diperiksa satu persatu — kualiti cetakan, jahitan dan ketepatan saiz.',
-    notes: [],
-    icon: 'shield',
-  },
-  {
-    num: '05',
-    date: '8 – 11 JULAI',
-    title: 'Pos Out',
-    desc: 'Semua tempahan dipos keluar berperingkat ke seluruh Malaysia.',
-    notes: ['Nombor tracking dihantar terus ke WhatsApp anda.'],
-    icon: 'truck',
-  },
-]
+function ProcessCard({ headerIcon, title, desc, steps, leadTime, leadTimeIcon, noHeaderFrame, delay, inView }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="glass-card rounded-2xl p-6 flex flex-col gap-5 border border-white/8 hover:border-green-400/20 transition-all duration-300"
+    >
+      {/* Card header */}
+      <div className="flex items-start gap-4">
+        {noHeaderFrame
+          ? <div className="shrink-0 w-14 h-14 flex items-center justify-center">{headerIcon}</div>
+          : <div className="shrink-0 w-14 h-14 rounded-full bg-[#080809] border border-white/10 flex items-center justify-center">{headerIcon}</div>
+        }
+        <div>
+          <h3 className="text-white font-black text-2xl leading-tight">{title}</h3>
+          <p className="text-white/50 text-sm mt-1 leading-relaxed">{desc}</p>
+        </div>
+      </div>
+
+      <div className="w-full h-px bg-white/6" />
+
+      {/* Steps */}
+      <div className="flex flex-col gap-4">
+        {steps.map((s, i) => (
+          <StepItem key={i} {...s} isLast={i === steps.length - 1} />
+        ))}
+      </div>
+
+      <div className="w-full h-px bg-white/6" />
+
+      {/* Lead time footer */}
+      <div className="flex items-center gap-3 glass rounded-xl px-4 py-3 border border-green-500/15">
+        <div className="shrink-0 w-10 h-10 rounded-full bg-[#080809] border border-white/10 flex items-center justify-center">
+          {leadTimeIcon ?? <ImgIcon src="/assets/icon/terima-pesanan.png" alt="Lead Time" size="w-6 h-6" />}
+        </div>
+        <div className="text-sm">
+          <span className="text-white font-semibold">Lead Time: </span>
+          <span className="text-green-400 font-bold">{leadTime}</span>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
 
 export default function ProcessTimeline() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-80px' })
-  const infoRef = useRef(null)
-  const infoInView = useInView(infoRef, { once: true, margin: '-60px' })
-
 
   return (
-    <section id="proses" className="py-16 md:py-32 relative overflow-hidden">
+    <section id="proses" className="py-16 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_bottom_left,rgba(0,122,30,0.02),transparent_60%)]" />
 
       <div className="max-w-7xl mx-auto px-6" ref={ref}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="text-center mb-20"
+          className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full mb-6">
-            <span className="text-xs text-green-400/80 tracking-[0.2em] uppercase font-medium">Timeline Proses</span>
+            <svg className="w-4 h-4 text-green-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
+              <line x1="3" x2="21" y1="6" y2="6" />
+              <path d="M16 10a4 4 0 0 1-8 0" />
+            </svg>
+            <span className="text-xs text-green-400/80 tracking-[0.2em] uppercase font-medium">PROSES TEMPAHAN</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-6">
-            <span className="text-white">Timeline</span>{' '}
-            <span className="text-gradient">Pre-Order</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
+            <span className="text-white">Proses </span>
+            <span className="text-green-400">Tempahan</span>
           </h2>
-          <p className="text-white/40 text-lg max-w-xl mx-auto leading-relaxed">
-            Proses telus dan tersusun — dari tempahan dibuka hingga jersey sampai ke pintu rumah anda.
+          <p className="text-white/40 text-base max-w-md mx-auto">
+            Dari tempahan hingga sampai ke tangan anda.
           </p>
-          <div className="mt-6 inline-flex items-center gap-2 glass-card px-6 py-3 rounded-full">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-green-400 font-bold">Kuota Terhad</span>
-            <span className="text-white/30 text-sm">· tempahan mengikut kuota yang ditetapkan</span>
-          </div>
         </motion.div>
 
-        {/* Timeline */}
-        <div className="relative max-w-3xl mx-auto">
-          {/* Vertical line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-px">
-            <motion.div
-              initial={{ scaleY: 0 }}
-              animate={inView ? { scaleY: 1 } : {}}
-              transition={{ duration: 1.5, ease: 'easeInOut', delay: 0.3 }}
-              className="w-full h-full bg-gradient-to-b from-green-400/60 via-green-400/20 to-transparent origin-top"
-            />
-          </div>
-
-          <div className="space-y-8">
-            {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: i % 2 === 0 ? -30 : 30 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.2 + i * 0.15, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                className={`flex items-start gap-6 md:gap-0 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-              >
-                {/* Content */}
-                <div className={`flex-1 pb-2 pl-16 md:pl-0 ${i % 2 === 0 ? 'md:pr-12' : 'md:pl-12'}`}>
-                  <div className="glass-card rounded-2xl p-6 hover:border-green-400/20 transition-all duration-300 hover:-translate-y-1">
-                    <div className={`flex items-center gap-3 mb-3 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                      <span className="text-4xl font-black leading-none select-none text-gradient" style={{ opacity: 0.9 }}>
-                        {step.num}
-                      </span>
-                      <span className="glass border border-green-400/20 rounded-full px-3.5 py-1.5 text-[11px] font-bold tracking-[0.15em] text-green-400/90 whitespace-nowrap">
-                        {step.date}
-                      </span>
-                    </div>
-
-                    <div className={i % 2 === 0 ? 'md:text-right' : ''}>
-                      <h3 className="text-white font-bold text-lg mb-2">{step.title}</h3>
-                      <p className="text-white/45 text-sm leading-relaxed">{step.desc}</p>
-
-                      {step.notes.length > 0 && (
-                        <ul className={`mt-3 space-y-1.5 ${i % 2 === 0 ? 'md:flex md:flex-col md:items-end' : ''}`}>
-                          {step.notes.map((n) => (
-                            <li key={n} className={`flex items-start gap-2 text-white/35 text-xs leading-relaxed ${i % 2 === 0 ? 'md:flex-row-reverse md:text-right' : ''}`}>
-                              <span className="mt-1.5 w-3 h-px bg-green-400/50 shrink-0" />
-                              {n}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Center icon node */}
-                <div className="absolute left-8 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={inView ? { scale: 1 } : {}}
-                    transition={{ delay: 0.3 + i * 0.15, type: 'spring', stiffness: 200 }}
-                    className="w-10 h-10 rounded-full bg-gradient-to-br from-[#007A1E] to-[#00C83A] flex items-center justify-center text-white shadow-lg glow-sm z-10"
-                  >
-                    {ICONS[step.icon]}
-                  </motion.div>
-                </div>
-
-                {/* Empty space for opposite side on desktop */}
-                <div className="hidden md:block flex-1" />
-              </motion.div>
-            ))}
-          </div>
+        {/* Two columns */}
+        <div className="grid md:grid-cols-2 gap-6">
+          <ProcessCard
+            headerIcon={<ImgIcon src="/assets/icon/ready-stock.png" alt="Ready Stock" size="w-14 h-14" />}
+            noHeaderFrame
+            title="Ready Stock"
+            desc="Barang sedia ada dan terus diproses untuk penghantaran."
+            steps={READY_STOCK_STEPS}
+            leadTime="Pos 1-3 Hari Bekerja"
+            delay={0.1}
+            inView={inView}
+          />
+          <ProcessCard
+            headerIcon={<ImgIcon src="/assets/icon/packing-pos.png" alt="Pre-Order" size="w-8 h-8" />}
+            leadTimeIcon={<IconCalendar />}
+            title="Pre-Order"
+            desc="Tempahan dibuat khas sebelum dipacking dan dihantar."
+            steps={PRE_ORDER_STEPS}
+            leadTime="Pos Selepas Produksi Siap (±7 Hari Bekerja)"
+            delay={0.25}
+            inView={inView}
+          />
         </div>
-
       </div>
     </section>
   )

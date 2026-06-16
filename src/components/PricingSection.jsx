@@ -1,106 +1,77 @@
-import { motion, useInView, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
 
 const PLATFORMS = [
   {
     key: 'tiktok',
     name: 'TikTok Shop',
-    badge: 'Harga Terendah',
+    badge: 'HARGA TERBAIK',
+    badgeIcon: <img src="/assets/icon/harga-terbaik.png" alt="" className="w-4 h-4 object-contain"  />,
     link: 'https://vt.tiktok.com/ZS9j6F1hV2nSF-4PYIU/',
-    icon: (
-      <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+    color: { border: 'tiktok', glow: '', badge: '', text: 'text-[#00f2ea]', sesuai: 'bg-[#00f2ea]/10 border-[#00f2ea]/20' },
+    icon: <img src="/assets/icon/tiktok.png" alt="TikTok" className="w-12 h-12 object-contain"  />,
+    pros: ['Flash Sale & voucher harian', 'Harga promosi semasa live', 'Diskaun shipping fee', 'Checkout pantas'],
+    cons: ['Tidak boleh pre-order', 'Tiada jualan borong'],
+    sesuaiIcon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0zM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7z" />
       </svg>
     ),
-    iconColor: 'text-white',
-    highlight: false,
-    pros: ['Ada live flash sale', 'Ada discount', 'Discount shipping fee'],
-    cons: ['Tiada jualan borong'],
+    sesuai: 'Pembelian segera 1-5 helai',
   },
   {
     key: 'shopee',
     name: 'Shopee',
-    badge: 'Pilihan Popular',
-    link: 'https://my.shp.ee/hQApxCZV',
-    icon: <img src="/assets/shopee-icon.svg" alt="Shopee" className="w-10 h-10" />,
-    iconColor: '',
-    highlight: false,
-    pros: ['Ada discount', 'Discount shipping fee', 'Buy more save more'],
-    cons: ['Tiada jualan borong'],
+    badge: 'PILIHAN POPULAR',
+    badgeIcon: <img src="/assets/icon/pilihan-popular.png" alt="" className="w-4 h-4 object-contain brightness-0 invert"  />,
+    link: 'https://my.shp.ee/2cf7pJMZ',
+    color: { border: '#f97316', glow: 'rgba(249,115,22,0.18)', badge: 'bg-[#f97316]', text: 'text-[#f97316]', sesuai: 'bg-[#f97316]/10 border-[#f97316]/20' },
+    icon: <img src="/assets/icon/shopee.png" alt="Shopee" className="w-12 h-12 object-contain"  />,
+    pros: ['Banyak voucher & cashback', 'Diskaun shipping fee', 'Buy More Save More', 'Boleh pre-order'],
+    cons: ['Tiada jualan borong', 'Tempahan khas terhad'],
+    sesuaiIcon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 0 0-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 0 1 5.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 0 1 9.288 0M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+      </svg>
+    ),
+    sesuai: 'Pembelian individu & keluarga',
   },
   {
     key: 'whatsapp',
     name: 'WhatsApp',
-    badge: 'Harga Borong',
+    badge: 'BORONG & CUSTOM',
+    badgeIcon: <img src="/assets/icon/borong-custom.png" alt="" className="w-4 h-4 object-contain brightness-0 invert"  />,
     link: 'https://wa.me/60182255865',
-    icon: (
-      <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+    color: { border: '#22c55e', glow: 'rgba(34,197,94,0.18)', badge: 'bg-[#22c55e]', text: 'text-[#22c55e]', sesuai: 'bg-[#22c55e]/10 border-[#22c55e]/20' },
+    icon: <img src="/assets/icon/whatsapp.png" alt="WhatsApp" className="w-12 h-12 object-contain"  />,
+    pros: ['Harga borong', 'Tempahan pasukan & organisasi', 'Boleh tambah nama / kawasan', 'Boleh pre-order', 'Free shipping RM2000 ke atas'],
+    cons: ['Perlu berurusan dengan admin', 'Tiada checkout automatik'],
+    sesuaiIcon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5m-4 0h4" />
       </svg>
     ),
-    iconColor: 'text-green-400',
-    highlight: true,
-    pros: [
-      'Harga terendah',
-      'Ada jualan borong',
-      'Boleh pre order',
-      'Add on nama kawasan',
-      'Free shipping RM2000 ke atas',
-    ],
-    cons: [],
+    sesuai: 'Sekolah, NGO, surau, masjid & cawangan PAS',
   },
 ]
 
-function Badge({ badge, highlight }) {
-  const [hovered, setHovered] = useState(false)
-
-  const colors = highlight
-    ? { bg: 'bg-green-400', text: 'text-black', glow: 'shadow-[0_0_12px_rgba(0,200,58,0.6)]', dot: 'bg-black' }
-    : { bg: 'bg-white/15', text: 'text-white', glow: 'shadow-[0_0_8px_rgba(255,255,255,0.15)]', dot: 'bg-white/60' }
-
-  return (
-    <motion.div
-      className={`absolute top-3 right-3 z-10 cursor-default`}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-    >
-      <motion.div
-        animate={{ scale: hovered ? 1.08 : 1 }}
-        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-        className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-full ${colors.bg} ${colors.text} ${colors.glow} backdrop-blur-sm`}
-      >
-        {/* Pulsing dot */}
-        <motion.span
-          className={`w-1.5 h-1.5 rounded-full ${colors.dot} shrink-0`}
-          animate={highlight ? { scale: [1, 1.4, 1], opacity: [1, 0.6, 1] } : {}}
-          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-        />
-        <span className="text-[9px] font-black tracking-[0.12em] uppercase whitespace-nowrap">
-          {badge}
-        </span>
-
-        {/* Shimmer on hover */}
-        <AnimatePresence>
-          {hovered && (
-            <motion.span
-              className="absolute inset-0 rounded-full overflow-hidden pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <motion.span
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                initial={{ x: '-100%' }}
-                animate={{ x: '100%' }}
-                transition={{ duration: 0.5 }}
-              />
-            </motion.span>
-          )}
-        </AnimatePresence>
-      </motion.div>
-    </motion.div>
-  )
-}
+const TRUST_BADGES = [
+  {
+    icon: <img src="/assets/icon/100-original.png" alt="" className="w-10 h-10 object-contain"  />,
+    title: '100% ORIGINAL',
+    desc: 'Jaminan kualiti',
+  },
+  {
+    icon: <img src="/assets/icon/kualiti-terjamin.png" alt="" className="w-10 h-10 object-contain"  />,
+    title: 'KUALITI TERJAMIN',
+    desc: 'Bahan premium & selesa',
+  },
+  {
+    icon: <img src="/assets/icon/servis-terbaik.png" alt="" className="w-10 h-10 object-contain"  />,
+    title: 'SERVIS TERBAIK',
+    desc: 'Kami sedia membantu',
+  },
+]
 
 export default function PricingSection() {
   const ref = useRef(null)
@@ -110,7 +81,8 @@ export default function PricingSection() {
     <section id="pricing" className="py-16 md:py-28 relative" ref={ref}>
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_70%_50%_at_50%_30%,rgba(0,122,30,0.02),transparent)]" />
 
-      <div className="max-w-5xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -118,53 +90,58 @@ export default function PricingSection() {
           className="text-center mb-12"
         >
           <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full mb-5">
-            <span className="text-xs text-green-400/80 tracking-[0.2em] uppercase font-medium">Cara Pembelian</span>
+            <span className="text-xs text-green-400/80 tracking-[0.2em] uppercase font-medium">CARA PEMBELIAN</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-            <span className="text-white">Beli </span>
-            <span className="text-gradient">Di Mana?</span>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4 leading-tight">
+            <span className="text-white">Pilih Cara Pembelian</span>
+            <br />
+            <span className="text-white">Yang Sesuai Untuk Anda</span>
           </h2>
           <p className="text-white/40 text-base max-w-md mx-auto leading-relaxed">
-            Pilih platform yang paling sesuai untuk anda.
+            Setiap platform mempunyai kelebihan tersendiri.<br />
+            Pilih mengikut keperluan anda.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-10">
           {PLATFORMS.map((p, i) => (
-            <motion.a
+            <motion.div
               key={p.key}
-              href={p.link}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.1, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -4 }}
-              whileTap={{ scale: 0.97 }}
-              className={`group relative flex flex-col rounded-2xl p-6 pt-8 border transition-all duration-300 ${
-                p.highlight
-                  ? 'border-green-400/40 shadow-[0_0_40px_rgba(0,200,58,0.12)]'
-                  : 'glass-card border-white/8 hover:border-white/20'
-              }`}
-              style={p.highlight ? {
-                background: 'linear-gradient(160deg, rgba(0,168,40,0.10), rgba(0,80,20,0.05))',
-              } : {}}
+              className="relative flex flex-col rounded-2xl p-6 bg-white/[0.03] transition-all duration-300"
+              style={p.key === 'tiktok'
+                ? { border: '1.5px solid transparent', backgroundClip: 'padding-box', boxShadow: '0 0 0 1.5px transparent, 0 0 35px rgba(0,242,234,0.15), 0 0 35px rgba(255,0,80,0.10)', outline: '1.5px solid', outlineColor: 'transparent', background: 'linear-gradient(#080809, #080809) padding-box, linear-gradient(135deg, #00f2ea, #ff0050) border-box' }
+                : { borderWidth: '1.5px', borderStyle: 'solid', borderColor: `${p.color.border}40`, boxShadow: `0 0 30px ${p.color.glow}` }
+              }
             >
-              <Badge badge={p.badge} highlight={p.highlight} />
+              {/* Badge */}
+              {p.key === 'tiktok' ? (
+                <div className="absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white text-[10px] font-black tracking-wider"
+                  style={{ background: 'linear-gradient(135deg, #00c8c8, #ff0050)' }}>
+                  <span>{p.badgeIcon}</span>
+                  {p.badge}
+                </div>
+              ) : (
+                <div className={`absolute top-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full text-white text-[10px] font-black tracking-wider ${p.color.badge}`}>
+                  <span>{p.badgeIcon}</span>
+                  {p.badge}
+                </div>
+              )}
 
-              {/* Icon */}
-              <div className={`flex items-center justify-center mb-4 ${p.iconColor} group-hover:scale-110 transition-transform duration-300`}>
-                {p.icon}
+              {/* Icon + Name */}
+              <div className="mb-5 mt-1">
+                <div className="mb-3">{p.icon}</div>
+                <h3 className="text-white font-black text-2xl">{p.name}</h3>
               </div>
 
-              {/* Name */}
-              <div className="text-white font-black text-xl mb-4 text-center">{p.name}</div>
-
               {/* Pros */}
-              <ul className="space-y-2 mb-3 flex-1">
+              <ul className="space-y-2 mb-4 flex-1">
                 {p.pros.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-white/60">
-                    <span className="text-green-400 mt-0.5 shrink-0">✓</span>
+                  <li key={item} className="flex items-start gap-2 text-sm text-white/70">
+                    <span className="text-green-400 shrink-0 mt-0.5">✓</span>
                     {item}
                   </li>
                 ))}
@@ -172,23 +149,61 @@ export default function PricingSection() {
 
               {/* Cons */}
               {p.cons.length > 0 && (
-                <ul className="space-y-1.5 mt-auto pt-3 border-t border-white/6">
+                <ul className="space-y-2 mb-4 pt-3 border-t border-white/8">
                   {p.cons.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm text-white/30">
-                      <span className="text-red-400/60 mt-0.5 shrink-0">✕</span>
+                    <li key={item} className="flex items-start gap-2 text-sm text-white/40">
+                      <span className="text-red-400 shrink-0 mt-0.5">✕</span>
                       {item}
                     </li>
                   ))}
                 </ul>
               )}
 
-              {/* Arrow */}
-              <div className={`mt-5 text-sm font-medium text-center transition-colors ${p.highlight ? 'text-green-400/70 group-hover:text-green-400' : 'text-white/30 group-hover:text-white/60'}`}>
-                Beli sekarang →
+              {/* Sesuai untuk */}
+              <div className={`flex items-start gap-3 rounded-xl px-4 py-3 border mb-5 ${p.color.sesuai}`}>
+                <span className={`shrink-0 mt-0.5 ${p.color.text}`}>{p.sesuaiIcon}</span>
+                <div className="text-sm">
+                  <span className={`font-bold ${p.color.text}`}>Sesuai untuk: </span>
+                  <span className="text-white/60">{p.sesuai}</span>
+                </div>
               </div>
-            </motion.a>
+
+              {/* CTA */}
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-base font-bold text-center transition-opacity hover:opacity-80"
+                style={p.key === 'tiktok' ? {
+                  background: 'linear-gradient(135deg, #00f2ea, #ff0050)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                } : {}}
+              >
+                <span className={p.key !== 'tiktok' ? p.color.text : ''}>Beli sekarang →</span>
+              </a>
+            </motion.div>
           ))}
         </div>
+
+        {/* Trust badges — no frame */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="flex flex-col sm:flex-row items-center justify-center divide-y sm:divide-y-0 sm:divide-x divide-white/10"
+        >
+          {TRUST_BADGES.map((b) => (
+            <div key={b.title} className="flex items-center gap-4 px-10 py-5 flex-1 justify-center">
+              <span className="text-white/40">{b.icon}</span>
+              <div>
+                <div className="text-white font-bold text-sm tracking-wide">{b.title}</div>
+                <div className="text-white/40 text-xs">{b.desc}</div>
+              </div>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )

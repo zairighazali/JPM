@@ -4,8 +4,8 @@ import { useRef, useState } from 'react'
 const PRODUCTS = [
   {
     key: 'zip',
-    name: 'Jersey Collar Zip',
-    desc: 'Polo zip klasik — pilihan utama penyokong. Sublimasi penuh, dryfit sejuk.',
+    name: 'Jersey Collar Zip Short Sleeve',
+    desc: 'Pilihan paling popular untuk keselesaan harian.',
     front: '/assets/product/jersey-zip-front.webp',
     imgScale: 1.5,
     views: [
@@ -16,8 +16,8 @@ const PRODUCTS = [
   },
   {
     key: 'longsleeve',
-    name: 'Jersey Long Sleeve',
-    desc: 'Lengan panjang — ringan, selesa & sesuai untuk semua aktiviti kempen.',
+    name: 'Jersey Henley Collar Long Sleeve',
+    desc: 'Gaya kemas dengan perlindungan tambahan.',
     front: '/assets/product/long-sleeve-front.webp',
     imgScale: 1,
     views: [
@@ -29,7 +29,7 @@ const PRODUCTS = [
   {
     key: 'muslimah',
     name: 'Jersey Muslimah V-Neck',
-    desc: 'Potongan labuh & sopan. Rekaan khas untuk muslimah yang aktif.',
+    desc: 'Potongan sopan dan selesa, direka khas untuk muslimah aktif.',
     front: '/assets/product/muslimah-v-neck-front.webp',
     imgScale: 1.15,
     views: [
@@ -125,6 +125,7 @@ function ProductModal({ product, onClose }) {
 
 function ProductCard({ product, i, inView }) {
   const [open, setOpen] = useState(false)
+  const [activeView, setActiveView] = useState(product.views[0])
 
   return (
     <>
@@ -132,41 +133,76 @@ function ProductCard({ product, i, inView }) {
         initial={{ opacity: 0, y: 40 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="group relative rounded-2xl overflow-hidden border border-white/8 hover:border-green-400/30 transition-all duration-500 cursor-pointer"
-        onClick={() => setOpen(true)}
+        className="group relative rounded-2xl border border-white/10 hover:border-green-400/25 transition-all duration-500 bg-[#080809] overflow-hidden"
       >
-        {/* Product image */}
-        <div className="relative overflow-hidden bg-black/20" style={{ aspectRatio: '3/4' }}>
-          <div className="absolute inset-0 flex items-center justify-center p-2 group-hover:scale-105 transition-transform duration-700 ease-out">
-            <img
-              src={product.front}
-              alt={product.name}
-              className="w-full h-full object-contain"
-              style={{ transform: `scale(${product.imgScale})` }}
-              draggable={false}
-            />
+        {/* Full card image + overlay info */}
+        <div
+          className="relative overflow-hidden cursor-pointer"
+          style={{ aspectRatio: '3/4' }}
+          onClick={() => setOpen(true)}
+        >
+          {/* Jersey image */}
+          <div className="absolute inset-0 flex items-center justify-center p-4 group-hover:scale-105 transition-transform duration-700 ease-out">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeView.key}
+                src={activeView.src}
+                alt={`${product.name} — ${activeView.label}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="w-full h-full object-contain"
+                style={{ transform: `scale(${product.imgScale})` }}
+                draggable={false}
+              />
+            </AnimatePresence>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-transparent" />
+
+          {/* Gradient overlay at bottom */}
+          <div className="absolute bottom-0 left-0 right-0 h-[55%] bg-gradient-to-t from-[#080809] via-[#080809]/85 to-transparent pointer-events-none" />
 
           {/* Tap hint */}
-          <div className="absolute top-3 right-3 glass border border-white/15 rounded-full px-3 py-1.5 flex items-center gap-1.5 text-[11px] text-white/60 group-hover:border-green-400/40 group-hover:text-green-400 transition-all">
+          <div className="absolute top-3 right-3 glass border border-white/15 rounded-full px-3 py-1.5 flex items-center gap-1.5 text-[11px] text-white/60 group-hover:border-green-400/40 group-hover:text-green-400 transition-all z-10">
             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               <path strokeLinecap="round" strokeLinejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
             </svg>
-            {product.views.length > 1 ? 'Lihat Semua View' : 'Lihat Detail'}
+            Lihat Semua View
           </div>
 
-          {/* Bottom info */}
-          <div className="absolute bottom-0 left-0 right-0 p-5">
-            <div className="text-white font-bold text-lg leading-tight">{product.name}</div>
-            <div className="text-white/50 text-xs mt-1 leading-relaxed line-clamp-2">{product.desc}</div>
+          {/* Info overlay at bottom of image */}
+          <div className="absolute bottom-0 left-0 right-0 px-5 pb-5 pt-2 z-10" onClick={(e) => e.stopPropagation()}>
+            {/* Icon + Name */}
+            <div className="flex items-center gap-3 mb-2">
+              <div className="shrink-0 w-12 h-12">
+                <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                  <circle cx="28" cy="28" r="26" stroke="#4ade80" strokeWidth="1.5"/>
+                  <path d="M20 18 L16 22 L21 25 L21 38 L35 38 L35 25 L40 22 L36 18 C35 20 31.5 22 28 22 C24.5 22 21 20 20 18Z" stroke="#4ade80" strokeWidth="1.5" strokeLinejoin="round" fill="none"/>
+                </svg>
+              </div>
+              <div>
+                <div className="text-white font-bold text-base leading-tight">{product.name}</div>
+                <div className="w-7 h-0.5 bg-green-500 mt-1.5 rounded-full" />
+              </div>
+            </div>
+            <div className="text-white/55 text-sm leading-relaxed mb-3">{product.desc}</div>
+
+            {/* View buttons */}
             {product.views.length > 1 && (
-              <div className="flex gap-1.5 mt-3">
+              <div className="flex gap-2">
                 {product.views.map((v) => (
-                  <span key={v.key} className="text-[10px] border border-white/20 text-white/40 rounded-full px-2 py-0.5">
+                  <button
+                    key={v.key}
+                    onClick={() => setActiveView(v)}
+                    className={`flex-1 text-xs py-1.5 rounded-lg border transition-all ${
+                      activeView.key === v.key
+                        ? 'border-green-500 text-green-400 font-semibold bg-transparent'
+                        : 'border-white/20 text-white/50 hover:border-white/40 hover:text-white/80'
+                    }`}
+                  >
                     {v.label}
-                  </span>
+                  </button>
                 ))}
               </div>
             )}
@@ -197,14 +233,16 @@ export default function ProductSection() {
           className="text-center mb-14"
         >
           <div className="inline-flex items-center gap-2 glass px-4 py-1.5 rounded-full mb-5">
-            <span className="text-xs text-green-400/80 tracking-[0.2em] uppercase font-medium">Koleksi Produk</span>
+            <span className="text-xs text-green-400/80 tracking-[0.2em] uppercase font-medium">EDISI PRU16 • STOK TERHAD</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">
-            <span className="text-white">Pilih </span>
-            <span className="text-gradient">Gaya Anda</span>
+            <span className="text-white">Pilih Gaya Yang</span>
+            <br />
+            <span className="text-green-400">Sesuai Untuk Anda</span>
           </h2>
-          <p className="text-white/40 text-base max-w-lg mx-auto leading-relaxed">
-            Klik pada setiap produk untuk lihat pandangan depan, tepi & belakang.
+          <p className="text-white/40 text-sm max-w-lg mx-auto leading-relaxed text-center">
+            Setiap rekaan direka untuk keselesaan dan kegunaan yang berbeza.<br />
+            Pilih model yang paling sesuai dengan gaya dan keperluan anda.
           </p>
         </motion.div>
 

@@ -375,9 +375,6 @@ export default function Hero() {
             ))}
           </div>
 
-          {/* Divider + Countdown */}
-          <div className="w-full max-w-sm h-px bg-gradient-to-r from-transparent via-green-400/20 to-transparent my-7" />
-          <Countdown />
         </motion.div>
 
         {/* ── RIGHT: Media showcase ── */}
