@@ -44,7 +44,7 @@ const PLATFORMS = [
     link: 'https://wa.me/60182255865',
     color: { border: '#22c55e', glow: 'rgba(34,197,94,0.18)', badge: 'bg-[#22c55e]', text: 'text-[#22c55e]', sesuai: 'bg-[#22c55e]/10 border-[#22c55e]/20' },
     icon: <img src="/assets/icon/whatsapp.png" alt="WhatsApp" className="w-12 h-12 object-contain"  />,
-    pros: ['Harga borong', 'Tempahan pasukan & organisasi', 'Boleh tambah nama / kawasan', 'Boleh pre-order', 'Free shipping RM2000 ke atas'],
+    pros: ['Harga borong', 'Tempahan pasukan & organisasi', 'Boleh tambah nama / kawasan', 'Boleh pre-order', 'Free shipping seluruh Malaysia kecuali Sabah & Sarawak'],
     cons: ['Perlu berurusan dengan admin', 'Tiada checkout automatik'],
     sesuaiIcon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
